@@ -13,26 +13,29 @@ library(rdrop2)
 library(readr)
 library(vroom)
 library(tidyverse)
-
-
+library(shinywidgets)
+library(shinythemes)
 
 header.true <- function(df) {
   names(df) <- as.character(unlist(df[1,]))
   df[-1,]
 }
 
-get_old_haircut_data = function(){
-    df = vroom::vroom("http://raw.githubusercontent.com/eric-thiel/haircut_lol/master/haircuts.csv.gz")
-    return(df)
-  }
 
-ui = shinyUI(
+ui = fluidPage( theme = shinytheme("slate"),
   pageWithSidebar(
-    headerPanel("Should I get a Haircut"),
+    headerPanel(h1("Should I get a Haircut?")),
+    
+    actionButton("button",label = "push me once per day"),
   
     
     mainPanel(
-      DT::dataTableOutput("mytable"),
+      htmlOutput("mytable"),
+      tags$style("#mytable {font-size:100px;
+               position:relative;
+               width: 60%;
+               }"),
+      
     )
     
   ))
@@ -41,11 +44,17 @@ ui = shinyUI(
 server = shinyServer(
   function(input,output,session){
     
-    value = runif(1, 0, 1)
-
-    output$mytable = DT::renderDataTable({   
-   
+   cap = eventReactive(input$button, {
+     number = runif(1,0,1)
+     ifelse(number > 0.97, "GET A HAIRCUT","        GROW IT")
+   }) 
+    
+    output$mytable = renderText({   
+    
+ 
+  
       
+    cap()
     })
   })
 
