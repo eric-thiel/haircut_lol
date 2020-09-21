@@ -13,7 +13,6 @@ library(rdrop2)
 library(readr)
 library(vroom)
 library(tidyverse)
-library(shinywidgets)
 library(shinythemes)
 
 header.true <- function(df) {
