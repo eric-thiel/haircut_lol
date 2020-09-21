@@ -22,18 +22,17 @@ header.true <- function(df) {
 }
 
 
-ui = fluidPage( theme = shinytheme("slate"),
+ui = fluidPage( theme = shinytheme("darkly"),
   pageWithSidebar(
     headerPanel(h1("Should I get a Haircut?")),
     
-    actionButton("button",label = "push me once per day"),
+    actionButton("button",label = "Push Me Once Per Day"),
   
-    
     mainPanel(
       htmlOutput("mytable"),
-      tags$style("#mytable {font-size:100px;
+      tags$style("#mytable {font-size:80px;
                position:relative;
-               width: 60%;
+               color: lightsalmon;
                }"),
       
     )
@@ -46,7 +45,7 @@ server = shinyServer(
     
    cap = eventReactive(input$button, {
      number = runif(1,0,1)
-     ifelse(number > 0.97, "GET A HAIRCUT","        GROW IT")
+     ifelse(number > 0.97, "GET A HAIRCUT","DON'T GET A HAIRCUT")
    }) 
     
     output$mytable = renderText({   
