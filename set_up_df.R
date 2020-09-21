@@ -9,7 +9,7 @@ frame = data.frame(dates, haircut)
 frame$dates = ymd(frame$dates)
 frame$haircut = as.character(frame$haircut)
 
-write.csv(haircut, file = gzfile("haircuts.csv"), row.names = FALSE)
+write.csv(frame, file = gzfile("haircuts.csv.gz"), row.names = FALSE)
 
 0.97^30
 
