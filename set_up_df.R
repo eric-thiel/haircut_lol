@@ -5,6 +5,8 @@ haircut = c("no","no","no","no","no")
 
 frame = data.frame(dates, haircut)
 
+frame$dates = as.Date(frame$dates)
+frame$haircut = as.character(frame$haircut)
 
 write.csv(haircut, file = gzfile("haircuts.csv.gz"), row.names = FALSE)
 

@@ -21,12 +21,15 @@ header.true <- function(df) {
   df[-1,]
 }
 
-
+get_old_haircut_data = function(){
+    df = vroom::vroom("http://raw.githubusercontent.com/eric-thiel/haircut_lol/master/haircuts.csv.gz")
+    return(df)
+  }
 
 ui = shinyUI(
   pageWithSidebar(
-    headerPanel("Should I get a Haircut")
-    
+    headerPanel("Should I get a Haircut"),
+  
     
     mainPanel(
       DT::dataTableOutput("mytable"),
