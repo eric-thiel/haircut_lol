@@ -23,7 +23,7 @@ header.true <- function(df) {
 
 ui = fluidPage( theme = shinytheme("darkly"),
   pageWithSidebar(
-    headerPanel(h1("Should I get a Haircut?")),
+    headerPanel("Should I get a Haircut?"),
     
     actionButton("button",label = "Push Me Once Per Day"),
   
