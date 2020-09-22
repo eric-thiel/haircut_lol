@@ -43,6 +43,7 @@ server = shinyServer(
   function(input,output,session){
     
    cap = eventReactive(input$button, {
+   
      number = runif(1,0,1)
      ifelse(number > 0.97, "GET A HAIRCUT","DON'T GET A HAIRCUT")
    }) 
